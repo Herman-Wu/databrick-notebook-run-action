@@ -1,0 +1,15 @@
+name: 'Databrick Notebook Run'
+description: 'Run a notebook in Databrick'
+inputs:
+  databrick-server-uri: # id of input
+    description: 'URL of the databrick server'
+    required: true
+    default: "https://adb-XXXX.XX.azuredatabricks.net"
+outputs:
+  result: # id of output
+    description: 'Result of the notebook'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.databrick-server-uri }}
