@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM python:3.7.5-slim
 
 COPY entrypoint.sh /entrypoint.sh
 
