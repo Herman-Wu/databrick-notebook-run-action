@@ -13,10 +13,14 @@ inputs:
     description: 'Databrick Cluster ID'
     required: true
     default: "abcdefghijk"
-  databrick-notebook-path: # id of input
+  databrick-local-path: # id of input
     description: 'Notebook in Databrick'
     required: true
-    default: "https://adb-XXXX.XX.azuredatabricks.net/notebook"
+    default: "notebooks/xxx.py"
+  databrick-workspace-path: # id of input
+    description: 'Workspace in Databrick'
+    required: true
+    default: "Users/xxx@domain.com"
 outputs:
   result: # id of output
     description: 'Result of the notebook'
@@ -27,4 +31,5 @@ runs:
     - ${{ inputs.databrick-server-uri }}
     - ${{ inputs.databrick-token }}
     - ${{ inputs.databrick-cluster-id }}
-    - ${{ inputs.databrick-notebook-path }}
+    - ${{ inputs.databrick-local-path }}
+    - ${{ inputs.databrick-workspace-path }}
