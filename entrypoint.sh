@@ -7,7 +7,7 @@ echo ::set-output name=time::$time
 DBURL=$1
 TOKEN=$2
 CLUSTERID=$3
-WORKSPACEPATH=$4
+NOTEBOOKPATH=$4
 
 echo "Hello2 $DBURL $TOKEN $CLUSTERID $WORKSPACEPATH"
 

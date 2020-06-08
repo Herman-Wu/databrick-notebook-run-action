@@ -13,3 +13,6 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.databrick-server-uri }}
+    - ${{ inputs.databrick-token }}
+    - ${{ inputs.databrick-cluster-id }}
+    - ${{ inputs.databrick-notebook-path }}
