@@ -5,6 +5,18 @@ inputs:
     description: 'URL of the databrick server'
     required: true
     default: "https://adb-XXXX.XX.azuredatabricks.net"
+  databrick-token: # id of input
+    description: 'Databrick Access Token'
+    required: true
+    default: "abcdefghijk"
+  databrick-cluster-id: # id of input
+    description: 'Databrick Cluster ID'
+    required: true
+    default: "abcdefghijk"
+  databrick-notebook-path: # id of input
+    description: 'Notebook in Databrick'
+    required: true
+    default: "https://adb-XXXX.XX.azuredatabricks.net/notebook"
 outputs:
   result: # id of output
     description: 'Result of the notebook'
