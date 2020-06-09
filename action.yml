@@ -16,11 +16,15 @@ inputs:
   databrick-local-path: # id of input
     description: 'Notebook in Databrick'
     required: true
-    default: "notebooks/xxx.py"
+    default: "github/workspace/notebooks"
   databrick-workspace-path: # id of input
     description: 'Workspace in Databrick'
     required: true
     default: "Users/xxx@domain.com"
+  databrick-outfile-path: # file path to save process log
+    description: 'File path to save process log'
+    required: true
+    default: "github/workspace/notebooks"
 outputs:
   result: # id of output
     description: 'Result of the notebook'
@@ -33,3 +37,4 @@ runs:
     - ${{ inputs.databrick-cluster-id }}
     - ${{ inputs.databrick-local-path }}
     - ${{ inputs.databrick-workspace-path }}
+    - ${{ inputs.databrick-outfile-path }}

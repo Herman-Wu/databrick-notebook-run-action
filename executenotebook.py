@@ -54,8 +54,11 @@ def main():
   for path, subdirs, files in os.walk(localpath):
       for name in files:
           fullpath = path + '/' + name
+
+          print("Full path is {}".format(fullpath))
           # removes localpath to repo but keeps workspace path
           fullworkspacepath = workspacepath + path.replace(localpath, '')
+          print("Full Workspace path is {}".format(fullworkspacepath))
 
           name, file_extension = os.path.splitext(fullpath)
           if file_extension.lower() in ['.scala', '.sql', '.r', '.py']:
@@ -70,13 +73,23 @@ def main():
       name, file_extension = os.path.splitext(nameonly)
 
       # workpath removes extension
-      fullworkspacepath = workspacepath + '/' + name
+      fullworkspacepath = workspacepath + name
+
+      #fullworkspacepath = '/'+workspacepath + '/notebooks/' + name
+      #fullworkspacepath = '/Users/hermanwu@microsoft.com/notebooks/' + name
 
       print('Running job for:' + fullworkspacepath)
       values = {'run_name': name, 'existing_cluster_id': clusterid, 'timeout_seconds': 3600, 'notebook_task': {'notebook_path': fullworkspacepath}}
+     
+      data1=json.dumps(values)
+
+      print(values)
 
       resp = requests.post(workspace + '/api/2.0/jobs/runs/submit',
-                           data=json.dumps(values), auth=("token", token))
+                           data=data1, auth=("token", token))
+
+      print("Databrick Job Request {}, token is {}".format(workspace + '/api/2.0/jobs/runs/submit',token))
+
       runjson = resp.text
       print("runjson:" + runjson)
       d = json.loads(runjson)
@@ -97,6 +110,7 @@ def main():
               break
           i=i+1
 
+      #TODO: Add create filer if it's doen't exist
       if outfilepath != '':
           file = open(outfilepath + '/' +  str(runid) + '.json', 'w')
           file.write(json.dumps(j))
