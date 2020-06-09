@@ -16,6 +16,6 @@ echo "Hello2 $DBURL $TOKEN $CLUSTERID $NOTEBOOKPATH"
 python3 ${SCRIPTPATH}/executenotebook.py --workspace=${DBURL}\
                         --token=$TOKEN\
                         --clusterid=${CLUSTERID}\
-                        --localpath=/github/workspace/${LOCALPATH}\
+                        --localpath=${LOCALPATH}\
                         --workspacepath=${WORKSPACEPATH}\
                         --outfilepath=${OUTFILEPATH}
