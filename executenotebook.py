@@ -81,12 +81,10 @@ def main():
       print('Running job for:' + fullworkspacepath)
       values = {'run_name': name, 'existing_cluster_id': clusterid, 'timeout_seconds': 3600, 'notebook_task': {'notebook_path': fullworkspacepath}}
      
-      data1=json.dumps(values)
-
       print(values)
 
       resp = requests.post(workspace + '/api/2.0/jobs/runs/submit',
-                           data=data1, auth=("token", token))
+                           json=values, auth=("token", token))
 
       print("Databrick Job Request {}, token is {}".format(workspace + '/api/2.0/jobs/runs/submit',token))
 
@@ -100,7 +98,7 @@ def main():
       while waiting:
           time.sleep(10)
           jobresp = requests.get(workspace + '/api/2.0/jobs/runs/get?run_id='+str(runid),
-                           data=json.dumps(values), auth=("token", token))
+                           json=values, auth=("token", token))
           jobjson = jobresp.text
           print("jobjson:" + jobjson)
           j = json.loads(jobjson)
